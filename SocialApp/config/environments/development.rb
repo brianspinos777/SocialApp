@@ -27,7 +27,41 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.raise_delivery_errors = false
+
+  #
+  # You need to unblock your email:
+  #    https://www.google.com/settings/security/lesssecureapps
+  #
+  # This setting is not available for accounts with 2-Step Verification
+  # enabled. Such accounts require an application-specific password for
+  # less secure apps access
+  #
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {
+    # this could be your IP for production?
+    # this is used for links in the email
+    # this could also be your domain, like example.com ?
+    host:'localhost',
+
+    # this could be port 80 for production?
+    # this is used for links in the email
+    port: '3000'
+  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default charset: "utf-8"
+  config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      authentication: :plain,
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"],
+      enable_starttls_auto: true
+      # domain: 'localhost2:3002', # not sure if I need this
+  }
+
+
 
   config.action_mailer.perform_caching = false
 
