@@ -22,3 +22,27 @@ json api
 
 database:
 
+rails g scaffold photos status:string
+rails g scaffold videos status:string
+rails g scaffold comments commentable_id:integer commentable_type:string boby:string user_id:integer
+rails g scaffold reactions reactable_id:integer reactable_type:string user_id:integer reaction_type:string
+rails g scaffold notifications body:string
+rails g scaffold friendships from_user_id:integer to_user_id:integer accepted:boolean
+
+
+
+
+--------
+
+rails g model ChatRoom title:string user:references
+
+#
+# Add user_name to users table and also add an index on that column
+#
+rails g migration AddUserNameToUsers user_name:string:index
+
+rails g migration RemoveUserNameFromUsers user_name:string  # string, decimal, references, text
+
+
+
+

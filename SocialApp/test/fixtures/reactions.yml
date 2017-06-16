@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reactable_id: 1
+  reactable_type: MyString
+  user_id: 1
+  reaction_type: MyString
+
+two:
+  reactable_id: 1
+  reactable_type: MyString
+  user_id: 1
+  reaction_type: MyString
