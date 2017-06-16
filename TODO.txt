@@ -1,3 +1,7 @@
+set devise
+set bootstrap
+
+
 friends
 photos
 comments
@@ -11,3 +15,9 @@ factory girl
 search users
 pagination
 json api
+
+
+
+
+database:
+

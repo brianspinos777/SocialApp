@@ -1,0 +1,14 @@
+STEPS:
+
+start postgres database server
+rails new SocialApp --database=postgresql
+cd SocialApp/
+rails db:create
+rails s
+
+
+
+rails g scaffold user name address phone
+rails db:migrate
+
+add devise
