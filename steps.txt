@@ -12,3 +12,4 @@ rails g scaffold user name address phone
 rails db:migrate
 
 add devise
+add bootstrap

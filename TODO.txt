@@ -1,5 +1,6 @@
 set devise
 set bootstrap
+set paperclip
 
 
 friends
