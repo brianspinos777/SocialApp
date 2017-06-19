@@ -6,7 +6,7 @@ set paperclip
 friends
 photos
 comments
-likes
+reactions
 file sharing
 videos
 chat
@@ -31,18 +31,7 @@ rails g scaffold friendships from_user_id:integer to_user_id:integer accepted:bo
 
 
 
-
---------
-
-rails g model ChatRoom title:string user:references
-
-#
-# Add user_name to users table and also add an index on that column
-#
-rails g migration AddUserNameToUsers user_name:string:index
-
-rails g migration RemoveUserNameFromUsers user_name:string  # string, decimal, references, text
-
+--> dont forget to add indexes for the polymorphic associations
 
 
 

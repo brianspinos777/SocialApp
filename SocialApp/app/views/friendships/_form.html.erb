@@ -12,18 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :from_user_id %>
-    <%= f.number_field :from_user_id %>
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
   </div>
 
   <div class="field">
-    <%= f.label :to_user_id %>
-    <%= f.number_field :to_user_id %>
+    <%= f.label :friend_id %>
+    <%= f.number_field :friend_id %>
   </div>
 
   <div class="field">
     <%= f.label :accepted %>
     <%= f.check_box :accepted %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pending %>
+    <%= f.check_box :pending %>
+  </div>
+
+  <div class="field">
+    <%= f.label :initiator %>
+    <%= f.text_field :initiator %>
   </div>
 
   <div class="actions">

@@ -1,14 +1,26 @@
 Rails.application.routes.draw do
-  resources :friendships
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :friendships do
+    collection do
+      post 'add_friend'         # add_friend_friendships_path
+      post 'unfriend'           # unfriend_friendships_path
+      post 'cancel_request'     # cancel_request_friendships_path
+      post 'accept_friendship'  # accept_friendship_friendships_path
+    end
+  end
+
   resources :notifications
   resources :reactions
   resources :comments
   resources :videos
   resources :photos
+
   get 'home/index'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  #======= DEVISE
 
   # `devise_for` should come before `resources :users`
   devise_for :users, controllers: {
@@ -17,11 +29,12 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root to: "home#index"
-
   # devise_scope :user do
   #   root to: "devise/sessions#new"
   # end
 
+  #=======
+
+  root to: "home#index"
 
 end

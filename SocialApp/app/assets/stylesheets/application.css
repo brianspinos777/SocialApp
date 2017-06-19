@@ -18,3 +18,12 @@
  * For twitter-bootstrap
  */
 body { padding-top: 50px; }
+
+.navbar-inverse {
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #f9f8f8;
+}

@@ -23,3 +23,18 @@ rails g scaffold reactions reactable_id:integer reactable_type:string user_id:in
 rails g scaffold notifications body:string
 rails g scaffold friendships from_user_id:integer to_user_id:integer accepted:boolean
 
+
+
+rails g migration AddUserIdToPhotos user_id:integer:index
+rails g migration AddUserIdToNotifications user_id:integer:index
+rails g migration AddUserIdToVideos user_id:integer:index
+rails g migration AddPendingToFriendships pending:boolean
+rails g migration AddUserIdToFriendships user_id:integer
+rails g migration AddFriendIdToFriendships friend_id:integer
+rails g migration AddInitiatorToFriendships initiator:string
+
+
+rails g migration RemoveFromUserIdFromFriendships from_user_id:integer  # string, decimal, references, text
+rails g migration RemoveToUserIdFromFriendships to_user_id:integer  # string, decimal, references, text
+
+

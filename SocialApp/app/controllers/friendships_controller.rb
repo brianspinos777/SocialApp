@@ -10,6 +10,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships/1
   # GET /friendships/1.json
   def show
+    @friendship = Friendship.find(params[:id])
   end
 
   # GET /friendships/new
@@ -19,7 +20,79 @@ class FriendshipsController < ApplicationController
 
   # GET /friendships/1/edit
   def edit
+    @friendship = Friendship.find(params[:id])
   end
+
+
+  #============
+
+  def add_friend
+    @friendship1 = Friendship.find_or_create_by(user_id: params[:user_id], friend_id: params[:friend_id])
+    @friendship2 = Friendship.find_or_create_by(user_id: params[:friend_id], friend_id: params[:user_id])
+
+    @friendship1.update_attributes(pending: true, initiator: 'u', accepted: false)
+    @friendship2.update_attributes(pending: true, initiator: 'f', accepted: false)
+
+    respond_to do |format|
+      if true
+        format.html { redirect_to root_url, notice: 'Successfully added user.' }
+      else
+        format.html { redirect_to root_url, notice: 'Error: friend was not added.' }
+      end
+    end
+  end
+
+  def unfriend
+    @friendship1 = Friendship.find_or_create_by(user_id: params[:user_id], friend_id: params[:friend_id])
+    @friendship2 = Friendship.find_or_create_by(user_id: params[:friend_id], friend_id: params[:user_id])
+
+    @friendship1.update_attributes(pending: false, accepted: false)
+    @friendship2.update_attributes(pending: false, accepted: false)
+
+    respond_to do |format|
+      if true
+        format.html { redirect_to root_url, notice: 'Unfriended user.' }
+      else
+        format.html { redirect_to root_url, notice: 'Error: Friendship was not canceled.' }
+      end
+    end
+  end
+
+  def cancel_request
+    @friendship1 = Friendship.find_or_create_by(user_id: params[:user_id], friend_id: params[:friend_id])
+    @friendship2 = Friendship.find_or_create_by(user_id: params[:friend_id], friend_id: params[:user_id])
+
+    @friendship1.update_attributes(pending: false, accepted: false)
+    @friendship2.update_attributes(pending: false, accepted: false)
+
+    respond_to do |format|
+      if true
+        format.html { redirect_to root_url, notice: 'Friendship successfully canceled.' }
+      else
+        format.html { redirect_to root_url, notice: 'Error: Friendship was not canceled.' }
+      end
+    end
+  end
+
+  def accept_friendship
+    @friendship1 = Friendship.find_or_create_by(user_id: params[:user_id], friend_id: params[:friend_id])
+    @friendship2 = Friendship.find_or_create_by(user_id: params[:friend_id], friend_id: params[:user_id])
+
+    @friendship1.update_attributes(pending: false, accepted: true)
+    @friendship2.update_attributes(pending: false, accepted: true)
+
+    respond_to do |format|
+      if true
+        format.html { redirect_to root_url, notice: 'Friendship successfully canceled.' }
+      else
+        format.html { redirect_to root_url, notice: 'Error: Friendship was not canceled.' }
+      end
+    end
+  end
+
+#============
+
+
 
   # POST /friendships
   # POST /friendships.json
@@ -69,6 +142,6 @@ class FriendshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def friendship_params
-      params.require(:friendship).permit(:from_user_id, :to_user_id, :accepted)
+      params.require(:friendship).permit(:user_id, :friend_id, :accepted, :pending, :initiator)
     end
 end

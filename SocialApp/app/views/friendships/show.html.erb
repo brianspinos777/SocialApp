@@ -2,17 +2,27 @@
 
 <p>
   <strong>From user:</strong>
-  <%= @friendship.from_user_id %>
+  <%= @friendship.user_id %>
 </p>
 
 <p>
   <strong>To user:</strong>
-  <%= @friendship.to_user_id %>
+  <%= @friendship.friend_id %>
 </p>
 
 <p>
   <strong>Accepted:</strong>
   <%= @friendship.accepted %>
+</p>
+
+<p>
+  <strong>Pending:</strong>
+  <%= @friendship.pending %>
+</p>
+
+<p>
+  <strong>Initiator:</strong>
+  <%= @friendship.initiator %>
 </p>
 
 <%= link_to 'Edit', edit_friendship_path(@friendship) %> |
